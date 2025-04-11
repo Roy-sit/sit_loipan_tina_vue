@@ -17,14 +17,14 @@ class PaintingController extends Controller {
 
      public function getAll() {
         //$book is which you want the result coming to//
-         $paintings = Painting::join('artists', 'artist_id', '=', 'artists.id')->select('paintings.id','title','publishedyear','image_url')->get();
+         $paintings = Painting::join('artists', 'artist_id', '=', 'artists.id')->select('paintings.id','title','publishedyear','image_url', 'artist_id')->get();
          return response()->json($paintings);
      }
 
 
      //$id is related the name of the route//
      public function getOne($id) {
-        $painting = Painting::join('artists', 'artist_id', '=', 'artists.id')->select('paintings.id','title','publishedyear','image_url')->where('paintings.id', '=', $id)->get();
+        $painting = Painting::join('artists', 'artist_id', '=', 'artists.id')->select('paintings.id','title','publishedyear','image_url', 'artist_id')->where('paintings.id', '=', $id)->get();
          return response()->json($painting);
      }
 
