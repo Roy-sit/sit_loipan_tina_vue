@@ -1,9 +1,15 @@
-body {
+html, body {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
-    // overflow: hidden;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
+
+// body {
+//     margin: 0;
+//     width: 100%;
+//     height: 100vh;
+// }
 
 #gallery-bg {
     background-image: url(../images/background.jpg);
@@ -14,216 +20,138 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-
 }
 
 #art-section {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.painting {
-    margin: 30px;
-    position: relative;
-    cursor: pointer;
-    text-align: center;
-    overflow: hidden;
+.loading-spinner {
+    width: 60px;
+}
+
+// #app {
+//     margin: 0;
+//     padding: 0;
+//     position: relative;
+//     justify-items: center;
+//     overflow: hidden;
+//     width: 100%;
+// }
+
+#app {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+}
+
+#app::-webkit-scrollbar {
+    display: none;
+}
+
+
+// .painting-con {
+//     margin: 0 30px;
+//     padding: 0;
+// }
+
+.painting-con {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    // padding: 20px;
+    box-sizing: border-box;
 }
 
 .painting-image {
-    border: 10px solid rgb(44, 44, 44);
-    filter: drop-shadow(5px 5px rgba(128, 128, 128, 0.678));
-    width: 100%;
+    margin: 0;
+    width: 80%;
+    cursor: pointer;
+    padding: 0;
+
+    img {
+        filter: drop-shadow(5px 5px rgba(128, 128, 128, 0.678));
+        border: 10px solid rgb(44, 44, 44);
+    }
+}
+
+#gallery-h3 {
+    text-align: center;
+    margin: 20px;
+    z-index: 100;
+    background: linear-gradient(90deg, rgb(45, 38, 242), rgb(215, 100, 6));
+    font-size: 35px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //or use svg//
 }
 
 .artwork-label {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    padding: 15px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    opacity: 0;
-    left: 0;
-    transition: all .5s ease;
-    transform: translateY(5px);
     text-align: left;
-}
-
-.painting:hover {
-    transform: scale(1.01);
-
-    .artwork-label {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.close-button {
-    width: 30px;
-    height: 30px;
-    margin-left: auto;
-    margin-top: 10px;
-    margin-right: 20px;
-    margin-bottom: 20px;
     position: relative;
-    cursor: pointer;
-    .line {
-        background-color: rgb(0, 0, 0);
-        height: 4px;
-        width: 90%;
-        position: absolute;
-        border-radius: 10px;
-    }   
-
-    .line:nth-child(1) {
-        transform: rotate(40deg) translate(8px, 9px);
-    }
-
-    .line:nth-child(2) {
-        transform: rotate(-40deg) translate(-8px, 9px);
-    }
-
+    // padding: 10px;
+    margin: 20px auto;
+    width: 400px;
+    height: 150px;
 }
 
-.artist {
-    background-color: white;
-    text-align: center;
-    padding: 40px;
-    position: absolute;
-    height: 100vh;
+.before {
     width: 100%;
-    // visibility: hidden;
+    height: 60%;
+    padding: 20px;
+    z-index: 2;
+    position: relative;
+    font-size: 15px;
+    // line-height: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 8px 8px 5px rgb(81, 81, 81);
 
-    .second-image {
-        width: 90%;
-    }
+}
 
-    h3, p {
-        text-align: left;
-    }
 
-    .artist-details {
-        margin: 30px;
-        padding: 10px;
-        border-top: 1px solid rgba(202, 202, 202, 0.696);
-        border-left: 1px solid rgb(202, 202, 202, 0.696);
-        box-shadow: 5px 5px 10px rgb(95, 95, 95);
+.after {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 8px 8px 5px rgb(81, 81, 81);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 0;
+    transition: all 1s ease;
+    pointer-events: none;
+
+    p {
+        padding-bottom: 5px;
     }
 }
+
+.show-after {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 
 
 @media screen and (min-width: 768px) {
 
-    .painting {
-        margin: 50px 30px;
-        position: relative;
-        cursor: pointer;
-        text-align: center;
-        
-    }
     
-    .painting-image {
-        border: 10px solid rgb(44, 44, 44);
-        filter: drop-shadow(5px 5px rgba(128, 128, 128, 0.678));
-        width: 85%;
-    }
-    
-    .artwork-label {
-        background-color: rgb(0, 0, 0);
-        color: rgb(255, 255, 255);
-        padding: 15px;
-        position: absolute;
-        width: 85%;
-        bottom: 0;
-        opacity: 0;
-        left: 7.5%;
-        transition: all .5s ease;
-        transform: translateY(5px);
-        text-align: left;
-    }
-
-    .artist {
-        background-color: white;
-        text-align: center;
-        padding: 40px;
-        position: absolute;
-        height: 100vh;
-        width: 100%;
-        // visibility: hidden;
-    
-        .second-image {
-            width: 70%;
-        }
-    
-        h3, p {
-            text-align: left;
-        }
-        .artist-details {
-            margin: 20px 15%;
-        }
-    }
 }
 
 @media screen and (min-width: 1200px) {
 
-    .painting {
-        margin: 50px 30px;
-        position: relative;
-        cursor: pointer;
-        text-align: center;
-        
-    }
-    
-    .painting-image {
-        border: 10px solid rgb(44, 44, 44);
-        filter: drop-shadow(5px 5px rgba(128, 128, 128, 0.678));
-        width: 60%;
-    }
-    
-    .artwork-label {
-        background-color: rgb(0, 0, 0);
-        color: rgb(255, 255, 255);
-        padding: 15px;
-        position: absolute;
-        width: 60%;
-        bottom: 0;
-        opacity: 0;
-        left: 20%;
-        transition: all .5s ease;
-        transform: translateY(5px);
-        text-align: left;
-    }
 
-    .close-button {
-        margin-right: 100px;
-        margin-top: 30px;
-    }
-
-    .artist {
-        background-color: white;
-        text-align: center;
-        padding: 0px;
-        position: absolute;
-        height: 100vh;
-        width: 100%;
-        // visibility: hidden;
-    
-        .second-image {
-            width: 45%;
-        }
-    
-        h3, p {
-            text-align: left;
-        }
-        .artist-details {
-            margin: 20px 30%;
-        }
-    }
 
 }

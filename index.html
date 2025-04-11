@@ -14,32 +14,37 @@
 <body id="gallery-bg">
     <h2 class="hidden">Modern Art Galley</h2>
 
-    <div id="art-section" class="grid-con">
-        <div class="col-span-full painting">
-            <img src="images/composition-VII.png" alt="Composition VII" class="painting-image">
+    <section id="art-section">
+        <h3 id="gallery-h3">Modern Art Gallery</h3>
+        <div id="app" class="grid-con">
+
+            <div v-if="loadingSpinner" class="col-span-full m-col-span-full loading-spinner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
+            </div>
             
-            <div class="artwork-label">
-                <h3>Composition VII</h3>
-                <p>Published Date: 1913</p>
+            <div v-for="painting in paintingsData" :class="'col-span-full m-col-span-6 painting-con'">
+                <div @click="getPainting(painting.artist_id)" class="painting-image">
+                    <img v-bind:src="`images/${painting.image_url}`" alt="Composition VII">
+                </div>
+
+                <div class="artwork-label">
+                    <div class="before">
+                        <h3>Composition VII</h3>
+                        <p>Published Year: 1913</p>
+                        <p v-if="error">{{error}}</p>
+                    </div>
+
+                    <div :class="{'show-after': painting.artist_id === selectedArtistId }" class="after">
+                        <h3>Artist Name:</h3>
+                        <p>{{name}}</p>
+                        <h3>Lifes Year:</h3>
+                        <p>{{lifedates}}</p>
+                        <h3>Biography:</h3>
+                        <p>{{background}}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="artist col-span-full">
-            <div class="col-span-full close-button">
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-
-            <img src="images/composition-VII.png" alt="composition VII" class="second-image">
-
-            <div class="artist-details">
-                <h3>Artist Name:</h3>
-                <p>Wassily Kandinsky</p>
-                <h3>Lifes Year:</h3>
-                <p>1866 - 1944</p>
-                <h3>Biography</h3>
-                <p>Kandinsky was a Russian painter and theorist, credited as a pioneer of abstract art.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 </body>
