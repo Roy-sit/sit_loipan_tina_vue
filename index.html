@@ -18,19 +18,26 @@
         <h3 id="gallery-h3">Modern Art Gallery</h3>
         <div id="app" class="grid-con">
 
-            <div v-if="loadingSpinner" class="col-span-full m-col-span-full loading-spinner">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
+
+            <div class="col-span-full m-col-span-full">
+                <div v-if="loadingSpinner" class="loading-spinner">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="25" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="85" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#0211FF" stroke="#0211FF" stroke-width="7" width="30" height="30" x="145" y="50"><animate attributeName="y" calcMode="spline" dur="2" values="50;120;50;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
+                </div>
+
+                <div v-if="error" class="col-span-full m-col-span-full">{{error}}</div>
             </div>
             
-            <div v-for="painting in paintingsData" :class="'col-span-full m-col-span-6 painting-con'">
+            
+            
+            <div v-for="painting in paintingsData" :class="'col-span-full m-col-span-full l-col-span-6 painting-con'">
                 <div @click="getPainting(painting.artist_id)" class="painting-image">
-                    <img v-bind:src="`images/${painting.image_url}`" alt="Composition VII">
+                    <img v-bind:src="`images/${painting.image_url}`" alt="{{painting.title}}" :class="{ 'portrait-img': painting.painting_id === 8 }">
                 </div>
 
                 <div class="artwork-label">
                     <div class="before">
-                        <h3>Composition VII</h3>
-                        <p>Published Year: 1913</p>
+                        <h3>{{painting.title}}</h3>
+                        <p>Published Year: {{painting.publishedyear}}</p>
                         <p v-if="error">{{error}}</p>
                     </div>
 
