@@ -7,7 +7,11 @@ const app = Vue.createApp({
             console.log(data)
             this.loadingSpinner = false;
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            this.error = "No information found";
+            this.loadingSpinner = true;
+        })
     },
     data() {
         return {
