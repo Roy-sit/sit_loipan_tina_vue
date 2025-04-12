@@ -54,21 +54,25 @@ h2, h3, p {
     margin-left: 20px;
 }
 
+.loading {
+    width: 40px;
+    margin: 5px;
+}
+
 
 #app {
     height: 80vh;
     overflow-y: scroll;
     scroll-snap-type: mandatory;
-    // scrollbar-width: none;
+    scrollbar-width: none;
 }
 
-// #app::-webkit-scrollbar {
-//     display: none;
-// }
-
+#app::-webkit-scrollbar {
+    display: none;
+}
 
 .painting-con {
-    height: 80vh;
+    height: 90vh;
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
@@ -101,11 +105,11 @@ h2, h3, p {
     position: relative;
     margin: 20px auto;
     width: 350px;
-    height: 180px;
+    height: 200px;
 }
 
 .before {
-    font-family: v.$font-famil;
+    font-family: v.$font-family;
     width: 100%;
     height: 50%;
     padding: 20px;
@@ -120,6 +124,7 @@ h2, h3, p {
 
 
 .after {
+    font-family: v.$font-family;
     background-color: rgb(255, 255, 255);
     box-shadow: 8px 8px 5px rgb(81, 81, 81);
     position: absolute;
@@ -180,7 +185,7 @@ h2, h3, p {
 
     .artwork-label {
         width: 400px;
-        height: 180px;
+        height: 200px;
     }
 
     
