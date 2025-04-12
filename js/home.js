@@ -6,6 +6,7 @@ const app = Vue.createApp({
             this.paintingsData = data;
             console.log(data)
             this.loadingSpinner = false;
+            this.loading = false;
         })
         .catch(error => {
             console.error(error);
@@ -17,6 +18,7 @@ const app = Vue.createApp({
         return {
             paintingsData: [],
             loadingSpinner: true,
+
             name: "",
             lifedates: "",
             background: "",
@@ -37,6 +39,7 @@ const app = Vue.createApp({
             this.lifedates = "";
             this.background = "";
             this.error = false;
+            this.loading = false;
 
             fetch(`http://localhost:8888/sit_loipan_tina_vue/lumen/public/artists/${artistId}`)
             .then(response => response.json())
@@ -52,7 +55,9 @@ const app = Vue.createApp({
                 }
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
+                this.error = "No information found";
+                this.loading = true;
             })
         }
     }
