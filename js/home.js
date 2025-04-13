@@ -1,3 +1,5 @@
+
+
 const app = Vue.createApp({
     created() {
         fetch('http://localhost:8888/sit_loipan_tina_vue/lumen/public/paintings')
@@ -53,6 +55,7 @@ const app = Vue.createApp({
                 } else {
                     this.error = 'No information found';
                 }
+                
             })
             .catch(error => {
                 console.error(error);
@@ -62,3 +65,7 @@ const app = Vue.createApp({
         }
     }
 }).mount('#app');
+
+import {scrollAnimation} from './modules/gsap.js';
+
+scrollAnimation();
